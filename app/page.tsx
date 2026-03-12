@@ -246,6 +246,11 @@ export default function Home() {
             } else if (event.type === 'done' && event.result) {
               // Normalise: filter out any outfits/items that Claude may have
               // returned without the required fields
+              if (!Array.isArray(event.result)) {
+                setError('Unexpected response format. Please try again.');
+                setPhase('error');
+                continue;
+              }
               const cleaned = (event.result as Outfit[])
                 .filter((o) => o && o.name && Array.isArray(o.items) && o.items.length > 0)
                 .map((o) => ({

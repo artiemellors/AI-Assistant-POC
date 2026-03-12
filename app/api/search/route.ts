@@ -166,12 +166,20 @@ export async function POST(req: NextRequest) {
           );
 
           if (presentCall) {
-            const { outfits } = presentCall.input as { outfits: Outfit[] };
+            const input = presentCall.input as { outfits?: unknown };
+            const rawOutfits = Array.isArray(input?.outfits) ? (input.outfits as Outfit[]) : null;
+
+            if (!rawOutfits || rawOutfits.length === 0) {
+              send({ type: 'error', message: 'No outfits returned. Please try again.' });
+              controller.close();
+              return;
+            }
+
             // Strip any lingering emojis from names/descriptions
-            const clean = outfits.map((o) => ({
+            const clean = rawOutfits.map((o) => ({
               ...o,
-              name: stripEmoji(o.name),
-              description: stripEmoji(o.description),
+              name: stripEmoji(o.name ?? ''),
+              description: stripEmoji(o.description ?? ''),
             }));
             send({ type: 'done', result: clean });
             controller.close();
