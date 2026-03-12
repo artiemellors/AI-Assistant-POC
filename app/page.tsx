@@ -299,10 +299,10 @@ export default function Home() {
       >
         <h1
           style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(2rem, 5vw, 3rem)',
-            fontWeight: 400,
-            letterSpacing: '-0.01em',
+            fontFamily: 'var(--font-sans)',
+            fontSize: 'clamp(1.75rem, 5vw, 2.5rem)',
+            fontWeight: 700,
+            letterSpacing: '-0.02em',
             marginBottom: '0.25rem',
             lineHeight: 1.1,
           }}
@@ -348,8 +348,8 @@ export default function Home() {
             style={{
               flex: 1,
               padding: '0.75rem 1rem',
-              borderRadius: '10px',
-              border: '1.5px solid var(--color-border)',
+              borderRadius: '4px',
+              border: '2px solid var(--color-border)',
               background: 'var(--color-card)',
               fontSize: '0.9rem',
               color: 'var(--color-text)',
@@ -371,7 +371,7 @@ export default function Home() {
             disabled={!query.trim() || phase === 'loading'}
             style={{
               padding: '0.75rem 1.25rem',
-              borderRadius: '10px',
+              borderRadius: '4px',
               background:
                 !query.trim() || phase === 'loading'
                   ? 'var(--color-border)'
@@ -379,7 +379,7 @@ export default function Home() {
               color: 'white',
               border: 'none',
               fontSize: '0.875rem',
-              fontWeight: 600,
+              fontWeight: 700,
               cursor:
                 !query.trim() || phase === 'loading'
                   ? 'not-allowed'
@@ -458,10 +458,10 @@ export default function Home() {
           {/* Copy */}
           <p
             style={{
-              fontFamily: 'var(--font-serif)',
-              fontStyle: 'italic',
-              fontSize: '1.1rem',
-              color: 'var(--color-muted)',
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 700,
+              fontSize: '1rem',
+              color: 'var(--color-text)',
               textAlign: 'center',
               marginBottom: '0.5rem',
             }}
@@ -508,10 +508,10 @@ export default function Home() {
         >
           <p
             style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: '1.1rem',
-              fontStyle: 'italic',
-              color: 'var(--color-muted)',
+              fontFamily: 'var(--font-sans)',
+              fontSize: '1rem',
+              fontWeight: 700,
+              color: 'var(--color-text)',
               marginBottom: '0.5rem',
             }}
           >
@@ -525,11 +525,13 @@ export default function Home() {
             style={{
               marginTop: '1rem',
               padding: '0.5rem 1.25rem',
-              borderRadius: '9999px',
-              border: '1.5px solid var(--color-border)',
+              borderRadius: '4px',
+              border: '2px solid var(--color-accent)',
               background: 'transparent',
+              color: 'var(--color-accent)',
               cursor: 'pointer',
-              fontSize: '0.85rem',
+              fontSize: '0.875rem',
+              fontWeight: 700,
               fontFamily: 'var(--font-sans)',
             }}
           >
@@ -554,13 +556,13 @@ export default function Home() {
           >
             <h2
               style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: '1.25rem',
-                fontWeight: 400,
+                fontFamily: 'var(--font-sans)',
+                fontSize: '1.125rem',
+                fontWeight: 700,
+                letterSpacing: '-0.01em',
               }}
             >
-              {outfits.length} outfits for{' '}
-              <em>&ldquo;{query}&rdquo;</em>
+              {outfits.length} outfits for &ldquo;{query}&rdquo;
             </h2>
             <button
               onClick={() => {
@@ -596,9 +598,8 @@ export default function Home() {
         >
           <p
             style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: '1rem',
-              fontStyle: 'italic',
+              fontFamily: 'var(--font-sans)',
+              fontSize: '0.9rem',
               color: 'var(--color-muted)',
               lineHeight: 1.6,
             }}

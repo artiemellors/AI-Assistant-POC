@@ -181,10 +181,10 @@ function ProductCard({ item, selectedIdx, onPrev, onNext }: ProductCardProps) {
           <span
             ref={priceRef}
             style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: '1.05rem',
-              fontWeight: 600,
-              color: 'var(--color-text)',
+              fontFamily: 'var(--font-sans)',
+              fontSize: '1rem',
+              fontWeight: 700,
+              color: 'var(--color-accent)',
               display: 'inline-block',
             }}
           >
@@ -274,9 +274,8 @@ export default function OutfitResults({ outfits }: { outfits: Outfit[] }) {
         {/* Outfit description */}
         <p
           style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: '1.05rem',
-            fontStyle: 'italic',
+            fontFamily: 'var(--font-sans)',
+            fontSize: '0.9rem',
             color: 'var(--color-muted)',
             marginBottom: '1.25rem',
             lineHeight: 1.5,
@@ -319,7 +318,7 @@ export default function OutfitResults({ outfits }: { outfits: Outfit[] }) {
           style={{
             background: 'var(--color-card)',
             border: '1px solid var(--color-border)',
-            borderRadius: '12px',
+            borderRadius: '4px',
             padding: '1.25rem',
           }}
         >
@@ -337,9 +336,10 @@ export default function OutfitResults({ outfits }: { outfits: Outfit[] }) {
           <span
             ref={totalRef}
             style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: '1.8rem',
-              fontWeight: 600,
+              fontFamily: 'var(--font-sans)',
+              fontSize: '1.75rem',
+              fontWeight: 700,
+              color: 'var(--color-accent)',
               display: 'inline-block',
               marginBottom: '1rem',
             }}
