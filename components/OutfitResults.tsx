@@ -26,7 +26,7 @@ function parsePrice(price: string): number {
 }
 
 function getTotal(outfit: Outfit, indices: number[]): number {
-  return outfit.items.reduce((sum, item, i) => {
+  return (outfit?.items ?? []).reduce((sum, item, i) => {
     const p = item.products[indices[i]] ?? item.products[0];
     return sum + parsePrice(p?.price ?? '0');
   }, 0);
@@ -212,7 +212,7 @@ function ProductCard({ item, selectedIdx, onPrev, onNext }: ProductCardProps) {
 export default function OutfitResults({ outfits }: { outfits: Outfit[] }) {
   const [activeOutfit, setActiveOutfit] = useState(0);
   const [selectedIndices, setSelectedIndices] = useState<number[][]>(() =>
-    outfits.map((o) => o.items.map(() => 0)),
+    outfits.map((o) => (o.items ?? []).map(() => 0)),
   );
   const totalRef = useRef<HTMLSpanElement>(null);
 
@@ -233,8 +233,9 @@ export default function OutfitResults({ outfits }: { outfits: Outfit[] }) {
     [outfits],
   );
 
-  const outfit = outfits[activeOutfit];
-  const indices = selectedIndices[activeOutfit] ?? outfit.items.map(() => 0);
+  const outfit = outfits[activeOutfit] ?? outfits[0];
+  const items = outfit?.items ?? [];
+  const indices = selectedIndices[activeOutfit] ?? items.map(() => 0);
   const total = getTotal(outfit, indices);
 
   return (
@@ -292,7 +293,7 @@ export default function OutfitResults({ outfits }: { outfits: Outfit[] }) {
             gap: '1rem',
           }}
         >
-          {outfit.items.map((item, itemIdx) => (
+          {items.map((item, itemIdx) => (
             <ProductCard
               key={`${activeOutfit}-${itemIdx}`}
               item={item}
@@ -347,7 +348,7 @@ export default function OutfitResults({ outfits }: { outfits: Outfit[] }) {
           </span>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-            {outfit.items.map((item, itemIdx) => {
+            {items.map((item, itemIdx) => {
               const p = item.products[indices[itemIdx]] ?? item.products[0];
               return (
                 <div

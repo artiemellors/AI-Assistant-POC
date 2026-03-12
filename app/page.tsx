@@ -244,8 +244,30 @@ export default function Home() {
                 setLoadingCopy(CURATING_COPY[0]);
               }
             } else if (event.type === 'done' && event.result) {
-              setOutfits(event.result);
-              setPhase('done');
+              // Normalise: filter out any outfits/items that Claude may have
+              // returned without the required fields
+              const cleaned = (event.result as Outfit[])
+                .filter((o) => o && o.name && Array.isArray(o.items) && o.items.length > 0)
+                .map((o) => ({
+                  ...o,
+                  items: o.items
+                    .filter((item) => item && item.category && Array.isArray(item.products) && item.products.length > 0)
+                    .map((item) => ({
+                      ...item,
+                      products: item.products.filter(
+                        (p) => p && p.name && p.price && p.productUrl,
+                      ),
+                    }))
+                    .filter((item) => item.products.length > 0),
+                }))
+                .filter((o) => o.items.length > 0);
+              if (cleaned.length > 0) {
+                setOutfits(cleaned);
+                setPhase('done');
+              } else {
+                setError('Claude returned no usable outfits. Please try again.');
+                setPhase('error');
+              }
             } else if (event.type === 'error' && event.message) {
               setError(event.message);
               setPhase('error');
