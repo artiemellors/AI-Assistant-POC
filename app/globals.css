@@ -24,8 +24,8 @@
   --color-accent: #DD182C;      /* kmartRed */
   --color-card: #FFFFFF;
   --color-text: #26282C;        /* neutralGrey[800] */
-  --color-muted: #6B7280;
-  --color-border: #E1E3E5;
+  --color-muted: #5E656F;        /* neutralGrey[500] */
+  --color-border: #E3E5E8;      /* neutralGrey[100] */
 
   /* Kmart Kosmos typography */
   --font-sans: "AnkoModerat", "Nunito Sans", system-ui, -apple-system, sans-serif;
