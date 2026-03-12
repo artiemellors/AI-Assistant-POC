@@ -1,0 +1,13 @@
+{
+  "name": "kmart-design-system-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for the Kmart Kosmos Design System",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}
